@@ -11,7 +11,23 @@ My pact testing framework journey
 
 So to change the contract the consumer team would change the tests in `consumer/src/test`. This would result in different Pact files. The consumer team would provide them to the provider team. That way the Pact file would be integrated in the `provider` project. The provider team needs to assure that the tests pass.
 
-## How to configure pact-broker
+## How to configure pact-broker:
+Start the PostgreSQL container via:
+docker run --name pactbroker-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e PGDATA=/var/lib/postgresql/data/pgdata -v /var/lib/postgresql/data:/var/lib/postgresql/data -d postgres
+docker ps
+
+Connect to the container and execute psql via:
+docker run -it --link pactbroker-db:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
+
+Run the follow SQL configuration scripts:
+CREATE USER pactbrokeruser WITH PASSWORD 'pactbrokerpassword';
+CREATE DATABASE pactbroker WITH OWNER pactbrokeruser;
+GRANT ALL PRIVILEGES ON DATABASE pactbroker TO pactbrokeruser;
+
+
+Start the PactBroker container via:
+docker run --name pactbroker --link pactbroker-db:postgres -e PACT_BROKER_DATABASE_USERNAME=pactbrokeruser -e PACT_BROKER_DATABASE_PASSWORD=pactbrokerpassword -e PACT_BROKER_DATABASE_HOST=postgres -e PACT_BROKER_DATABASE_NAME=pactbroker -d -p 80:80 dius/pact-broker
+
 
 ## Publish pact files to pact-broker:
 * Run `mvn pact:publish` in the `consumer` subdirectory.
