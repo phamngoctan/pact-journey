@@ -13,5 +13,7 @@ So to change the contract the consumer team would change the tests in `consumer/
 
 ## References:
 https://docs.pact.io/faq/convinceme.html
+
 https://github.com/pact-foundation/pact-specification
+
 https://github.com/pact-foundation/pact-ruby/wiki/FAQ
