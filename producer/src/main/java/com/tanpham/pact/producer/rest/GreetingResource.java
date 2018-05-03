@@ -1,5 +1,6 @@
 package com.tanpham.pact.producer.rest;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,6 +15,7 @@ import com.tanpham.pact.producer.model.GreetingResponse;
 public class GreetingResource {
 
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response greet(GreetingRequest greetingRequest) {
 		return Response.ok().entity(new GreetingResponse("Hello, " + greetingRequest.getName() + "!")).build();
 	}
