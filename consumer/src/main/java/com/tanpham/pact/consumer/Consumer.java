@@ -12,7 +12,7 @@ public final class Consumer {
     }
 
     public String run() {
-        return target.path("/").request(MediaType.TEXT_PLAIN).get(String.class);
+        return target.path("/producer/api").request(MediaType.TEXT_PLAIN).get(String.class);
     }
 
     public static Consumer of(String uri) {

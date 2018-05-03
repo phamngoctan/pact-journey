@@ -19,7 +19,7 @@ public class ConsumerDslTest {
                 .hasPactWith("My Spring Boot Provider")
                 .uponReceiving("a root request")
                     .method("GET")
-                    .path("/")
+                    .path("/producer/api")
                 .willRespondWith()
                     .status(200)
                     .body("Hello, world!")

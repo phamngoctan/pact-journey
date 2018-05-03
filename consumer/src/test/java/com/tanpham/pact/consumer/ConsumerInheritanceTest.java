@@ -14,7 +14,7 @@ public class ConsumerInheritanceTest extends ConsumerPactTestMk2 {
     @Override
     protected RequestResponsePact createPact(PactDslWithProvider builder) {
         return builder
-                .uponReceiving("a root request").method("GET").path("/")
+                .uponReceiving("a root request").method("GET").path("/producer/api")
                 .willRespondWith().status(200).body("Hello, world!")
                 .toPact();
     }

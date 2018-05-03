@@ -26,7 +26,7 @@ public class JsonConsumer {
 		// try adding a second field (e.g. gender) with a random value
 		// the test now fails because we send more than specified which should
 		// result in a contract change
-		return target.path("/greet").request(MediaType.APPLICATION_JSON).post(
+		return target.path("/producer/api/greet").request(MediaType.APPLICATION_JSON).post(
 				// entity("{ \"name\": \"" + name + "\", \"gender\": \"male\"
 				// }", APPLICATION_JSON),
 				Entity.entity("{ \"name\": \"" + name + "\" }", MediaType.APPLICATION_JSON), String.class);

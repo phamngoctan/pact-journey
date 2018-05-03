@@ -20,7 +20,7 @@ public class JsonConsumerTest {
     public RequestResponsePact createFragment(PactDslWithProvider builder) {
         return builder
             .uponReceiving("JSON request")
-                .method("POST").path("/greet")
+                .method("POST").path("/producer/api/greet")
                     .headers("Content-Type", "application/json")
                     .body(new PactDslJsonBody()
                         .stringType("name", "Michael"))
