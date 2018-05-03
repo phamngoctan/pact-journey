@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>au.com.dius</groupId>
 			<artifactId>pact-jvm-consumer-junit_2.11</artifactId>
-			<version>3.5.12</version>
+			<version>3.5.14</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -43,5 +43,51 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>au.com.dius</groupId>
+				<artifactId>pact-jvm-provider-maven_2.12</artifactId>
+				<version>3.5.11</version>
+				<configuration>
+					<serviceProviders>
+						<!-- You can define as many as you need, but each must have a unique 
+							name -->
+						<serviceProvider>
+							<name>JsonProvider</name>
+							<!-- All the provider properties are optional, and have sensible defaults 
+								(shown below) -->
+							<protocol>http</protocol>
+							<host>localhost</host>
+							<port>8080</port>
+							<path>/</path>
+							<consumers>
+								<!-- Again, you can define as many consumers for each provider as 
+									you need, but each must have a unique name -->
+								<consumer>
+									<name>JsonConsumer</name>
+									<!-- currently supports a file path using pactFile or a URL using 
+										pactUrl -->
+									<pactFile>target/pacts/JsonConsumer-JsonProvider.json</pactFile>
+								</consumer>
+							</consumers>
+						</serviceProvider>
+					</serviceProviders>
+					
+					<pactDirectory>target/pacts</pactDirectory> <!-- Defaults to ${project.build.directory}/pacts -->
+					<pactBrokerUrl>http://localhost:80</pactBrokerUrl>
+					<projectVersion>${project.version}</projectVersion> <!-- Defaults to ${project.version} -->
+					<trimSnapshot>true</trimSnapshot> <!-- Defaults to false -->
+					<configuration>
+			             <pact.showStacktrace>true</pact.showStacktrace>
+			        </configuration>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
 
 </project>
