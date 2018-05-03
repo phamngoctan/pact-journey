@@ -5,14 +5,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.tanpham.pact.producer.model.GreetingRequest;
-
 @Path("/")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_PLAIN)
 public class HelloWorldResource {
 
 	@GET
-	public String helloWorld(GreetingRequest greetingRequest) {
+	public String helloWorld() {
 		return "Hello, world!";
 	}
 	

@@ -10,7 +10,7 @@
             "description": "a root request",
             "request": {
                 "method": "GET",
-                "path": "/"
+                "path": "/producer/api"
             },
             "response": {
                 "status": 200,

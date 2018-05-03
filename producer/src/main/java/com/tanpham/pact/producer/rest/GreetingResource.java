@@ -10,7 +10,7 @@ import com.tanpham.pact.producer.model.GreetingRequest;
 import com.tanpham.pact.producer.model.GreetingResponse;
 
 @Path("greet")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 public class GreetingResource {
 
 	@POST
